@@ -1,3 +1,85 @@
+# Product Trial App
+
+This is a full-stack e-commerce trial application that allows users to browse products, view details, and interact with wishlists and shopping carts. It also features secure access using token-based authentication and comprehensive API documentation via Swagger.
+
+## Snapshots
+
+### App UI
+![Product List](image.png)
+![Cart List](image-1.png)
+![Contact](image-2.png)
+
+### Swagger Documentation
+![swagger](image-3.png)
+
+🔗 Swagger Link: [http://localhost:3000/api-docs/#/](http://localhost:3000/api-docs/#/)
+
+## Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/BoujaafarWidad/product-trial.git
+cd product-trial-master
+```
+### 2. Backend Setup
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+- Server runs at: http://localhost:3000
+- Swagger docs available at: http://localhost:3000/api-docs/#/
+
+### 3. Frontend Setup
+
+```bash
+cd front-react
+npm install
+npm run dev
+```
+- Frontend runs at: http://localhost:5173/
+
+## 🔑 Important: Token Authentication Setup
+
+This app uses a **Token** to access protected routes like **products** and other **user-specific features**.
+
+> ⚠️ **Note:** The token **expires periodically** and must be **manually updated** since I didn't implement the auth interface.
+
+### To run the app properly:
+
+1. **Generate a valid token** using your backend login endpoint or via **Swagger UI**.
+2. **Locate the `App.tsx` file** inside: front-react/src/App.tsx
+
+## Running Tests
+
+This project includes tests for both the **frontend (React)** and **backend (Node.js / Express or NestJS)**. Below are the instructions for running them.
+
+---
+
+### 🧪 Frontend Tests (React)
+
+We use **Jest** and **React Testing Library** for frontend testing.
+
+#### To run frontend tests:
+
+Navigate to the `front-react/` directory:
+
+   ```bash
+   cd front-react
+   npx test
+   ```
+
+#### To run backend tests:   
+
+Navigate to the `front-react/` directory:
+
+   ```bash
+   cd back
+   npx test
+   ```
+
 # Consignes
 
 - Vous êtes développeur front-end : vous devez réaliser les consignes décrites dans le chapitre [Front-end](#Front-end)
