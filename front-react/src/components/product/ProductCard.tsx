@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
-import product1 from "../../../public/product2.jpg";
+} from "../../components/ui/card";
 import { Heart, Star } from 'lucide-react';
 import { type Product } from "./data";
 import { useEffect, useState } from "react";
@@ -85,7 +84,7 @@ const ProductCard: React.FC<{ product: Product, onAddToCart: (product: Product) 
   return (
     <Card className="w-full max-w-sm pt-0 relative">
       <CardHeader className="p-0 overflow-hidden h-55">
-        <img alt="productImage" src={product1} className="object-cover w-full h-full" />
+        <img alt="productImage" src={"/product2.jpg"} className="object-cover w-full h-full" />
       </CardHeader>
       <CardContent className="p-2">
         <div className="flex flex-col overflow-hidden">
@@ -129,7 +128,7 @@ const ProductCard: React.FC<{ product: Product, onAddToCart: (product: Product) 
       <CardFooter className="flex items-center justify-between">
         <div className="flex flex-col">
           <span className="text-2xl font-bold text-gray-600">
-            {product.price.toLocaleString('fr-FR')}€
+            {product.price} €
           </span>
           <span className="text-xs text-gray-500">
             Réf: {product.internalReference}

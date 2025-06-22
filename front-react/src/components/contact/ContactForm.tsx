@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ContactFormData, FormErrors } from "./Contact";
+import type { ContactFormData, FormErrors } from "./ContactType";
 import { Check, Mail, Send } from "lucide-react";
 
 const ContactForm = () => {

@@ -13,7 +13,7 @@ import {
 
 function App() {
   useEffect(() => {
-    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc1MDUzNTA5Mjk5MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzUwNTg4OTk3LCJleHAiOjE3NTA1OTYxOTd9.RSOP9AfptpCHVcujCbnz7ZMXJb99KLXuafHzi5x4eM8');
+    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc1MDUzNTA5Mjk5MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzUwNjEwNTYwLCJleHAiOjE3NTA2MTc3NjB9.CtJ0SGPXeBE4ds96sqCuWtKuPrg3NkN0rMiXn6FvE4U');
   }, []);
 
   return (
