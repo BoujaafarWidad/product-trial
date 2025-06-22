@@ -65,6 +65,23 @@ router.post('/cart', authenticateToken, async (req: any, res) => {
 
 /**
  * @swagger
+ * /user/cart:
+ *   delete:
+ *     summary: Empty the user's cart
+ *     tags: [User]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Cart emptied successfully
+ */
+router.delete('/cart', authenticateToken, async (req: any, res) => {
+  await updateUserField(req.user.id, 'cart', []);
+  res.json({ message: 'Cart emptied' });
+});
+
+/**
+ * @swagger
  * /user/wishlist:
  *   get:
  *     summary: Get the user's wishlist

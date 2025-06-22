@@ -3,15 +3,27 @@ import useCart from "../../hooks/useCart";
 import type { Product } from "../product/data";
 import CartItem from "./CartItem";
 import { ShoppingCart } from "lucide-react"
+import useCartAPI from "../../hooks/useCartAPI";
 
 const CartList = () => {
   const { state, dispatch, getTotalPrice } = useCart();
+  const { loading, emptyCart } = useCartAPI();
+
   let navigate = useNavigate()
   const totalPrice = getTotalPrice();
 
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
+    emptyCart();
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <p className="text-gray-500 animate-pulse text-lg">Chargement du panier...</p>
+      </div>
+    );
+  }
 
   if (state.items.length === 0) {
     return (

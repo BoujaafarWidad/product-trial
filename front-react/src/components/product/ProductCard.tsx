@@ -6,10 +6,46 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import product1 from "../../../public/product2.jpg";
-import { Star } from 'lucide-react';
+import { Heart, Star } from 'lucide-react';
 import { type Product } from "./data";
+import { useEffect, useState } from "react";
+import { getWishlist, updateWishlist } from "../../lib/api";
 
 const ProductCard: React.FC<{ product: Product, onAddToCart: (product: Product) => void }> = ({ product, onAddToCart }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [wishlist, setWishlist] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      try {
+        const res = await getWishlist();
+        const wishlistItems: Product[] = res.data;
+        setWishlist(wishlistItems);
+        setIsLiked(wishlistItems.some((item) => item.id === product.id));
+      } catch (error) {
+        console.error("Error fetching wishlist", error);
+      }
+    };
+
+    fetchWishlist();
+  }, [product.id]);
+
+  const onWishlistClick = async () => {
+    try {
+      let updatedWishlist;
+      if (isLiked) {
+        updatedWishlist = wishlist.filter((item) => item.id !== product.id);
+      } else {
+        updatedWishlist = [...wishlist, product];
+      }
+
+      await updateWishlist(updatedWishlist);
+      setWishlist(updatedWishlist);
+      setIsLiked(!isLiked);
+    } catch (error) {
+      console.error("Error updating wishlist", error);
+    }
+  }
 
   const getStatusConfig = (status: Product['inventoryStatus']) => {
     switch (status) {
@@ -53,6 +89,12 @@ const ProductCard: React.FC<{ product: Product, onAddToCart: (product: Product) 
       </CardHeader>
       <CardContent className="p-2">
         <div className="flex flex-col overflow-hidden">
+          <button
+            onClick={onWishlistClick}
+            className="absolute top-3 left-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
+          >
+            <Heart className={`w-4 h-4 ${isLiked ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} />
+          </button>
           <div className="absolute top-3 right-3">
             <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusConfig.className}`}>
               {statusConfig.label}

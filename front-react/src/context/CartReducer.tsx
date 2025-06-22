@@ -3,6 +3,12 @@ import type { CartAction, CartStateType } from "./types";
 
 const cartReducer = (state: CartStateType, action: CartAction): CartStateType => {
   switch (action.type) {
+    case 'SET_CART':
+      return {
+        ...state,
+        items: action.items
+      };
+
     case 'ADD_TO_CART':
       const existingItem = state.items.find((item: Product) => item.id === action.product.id);
       if (existingItem) {

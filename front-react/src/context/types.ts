@@ -12,7 +12,8 @@ export type CartAction =
   | { type: 'ADD_TO_CART'; product: Product }
   | { type: 'REMOVE_FROM_CART'; productId: number }
   | { type: 'UPDATE_QUANTITY'; productId: number; quantity: number }
-  | { type: 'CLEAR_CART' };
+  | { type: 'CLEAR_CART' }
+  | {type: 'SET_CART'; items: Product[]};
 
 export interface CartContextType {
   state: CartStateType;

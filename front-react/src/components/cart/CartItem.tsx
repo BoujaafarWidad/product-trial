@@ -1,25 +1,29 @@
 import useCart from "../../hooks/useCart";
+import useCartAPI from "../../hooks/useCartAPI";
 import type { Product } from "../product/data";
 import { Package, Minus, Plus, Trash2 } from "lucide-react"
 
 const CartItem = ({ item }: { item: Product }) => {
   const { dispatch } = useCart();
+  const { removeFromCart, updateQuantity } = useCartAPI();
 
-  const updateQuantity = (newQuantity: number) => {
+  const updateCartQuantity = (newQuantity: number) => {
     dispatch({ type: 'UPDATE_QUANTITY', productId: item.id, quantity: newQuantity });
+    updateQuantity(item.id, newQuantity);
   };
 
   const removeItem = () => {
     dispatch({ type: 'REMOVE_FROM_CART', productId: item.id });
+    removeFromCart(item.id);
   };
   return (
     <div className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm border">
       <div className="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-md flex items-center justify-center">
-        {item.image ? (
+        {/* {item.image ? (
           <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-md" />
-        ) : (
-          <Package className="h-8 w-8 text-gray-400" />
-        )}
+        ) : ( */}
+        <Package className="h-8 w-8 text-gray-400" />
+        {/* )} */}
       </div>
 
       <div className="flex-1 min-w-0">
@@ -29,7 +33,7 @@ const CartItem = ({ item }: { item: Product }) => {
 
       <div className="flex items-center space-x-2">
         <button
-          onClick={() => updateQuantity(item.quantity - 1)}
+          onClick={() => updateCartQuantity(item.quantity - 1)}
           className="p-1 rounded-md hover:bg-gray-100 transition-colors"
         >
           <Minus className="h-4 w-4" />
@@ -38,7 +42,7 @@ const CartItem = ({ item }: { item: Product }) => {
         <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
 
         <button
-          onClick={() => updateQuantity(item.quantity + 1)}
+          onClick={() => updateCartQuantity(item.quantity + 1)}
           className="p-1 rounded-md hover:bg-gray-100 transition-colors"
         >
           <Plus className="h-4 w-4" />
